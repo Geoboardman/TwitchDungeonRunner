@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 80
+var SPEED = 80
 
 var move_dir = Vector2(0,0)
 var sprite_dir = "down"
@@ -10,10 +10,6 @@ func _ready():
 	sprite = get_node("Sprite");
 
 func movement_loop():
-	if move_dir == dir.center:
-		anim_switch("idle")
-	else:
-		anim_switch("walk")
 	move_and_slide(move_dir * SPEED)
 	
 func sprite_dir_loop():

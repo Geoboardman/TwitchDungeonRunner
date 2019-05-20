@@ -20,6 +20,10 @@ func _physics_process(delta):
 	sprite_dir_loop()
 	if state == "moving":
 		movement_loop()
+		if move_dir == dir.center:
+			anim_switch("idle")
+		else:
+			anim_switch("walk")		
 	if Input.is_action_pressed("attack"):
 		if state != "attacking":
 			attacking()
