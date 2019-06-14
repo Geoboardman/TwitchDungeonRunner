@@ -21,15 +21,14 @@ func __connect_signals():
 func _command_reply(params):
 	var sender = params[0]
 	twicil.send_message("Hello, " + str(sender))
-	
-func _command_stuff(params):
-	var sender = params[0]
-	twicil.send_message("Wow this stuff really works, " + str(sender))	
 
-sync func _command_spawn_slime(params):
+sync func spawn_slime():
 	var enemy = slime.instance()
 	enemy.position = Vector2(100,100)
 	add_child(enemy)
+
+func _command_spawn_slime(params):
+	rpc("spawn_slime")
 
 func send_greeting_help():
 	twicil.send_message(
@@ -39,7 +38,6 @@ func send_greeting_help():
 
 func init_interactive_commands():
 	twicil.commands.add("hi", self, "_command_reply", 0, true)
-	twicil.commands.add("stuff", self, "_command_stuff", 0, true)
 	twicil.commands.add("slime", self, "_command_spawn_slime", 0, true)
 
 # Public methods
