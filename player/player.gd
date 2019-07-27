@@ -19,6 +19,7 @@ sync func attacking():
 	state = "attacking"
 	anim_switch("attack")
 
+
 func _physics_process(delta):
 	if is_network_master():
 		controls_loop()		
@@ -38,8 +39,6 @@ func _physics_process(delta):
 func _on_anim_animation_finished(anim_name):
 	if "attack" in anim_name:
 		state = "moving"
-
-func _on_sword_body_entered(body):
-	var name = body.get("name")
-	if name == "slime":
-		body.queue_free()
+		
+# sync func take_damage(by_who):
+	

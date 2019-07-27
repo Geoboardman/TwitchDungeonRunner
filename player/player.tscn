@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/player.png" type="Texture" id=2]
+[ext_resource path="res://engine/melee_weapon.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack_down"
@@ -152,7 +153,7 @@ tracks/0/keys = {
 extents = Vector2( 7, 7 )
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 7.8753, 9.46198 )
+extents = Vector2( 7.8753, 9.61517 )
 
 [node name="player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -180,10 +181,12 @@ visible = false
 shape = SubResource( 11 )
 
 [node name="sword" type="Area2D" parent="."]
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword"]
 position = Vector2( -0.643921, -9.87338 )
 shape = SubResource( 12 )
 
 [connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
-[connection signal="body_entered" from="sword" to="." method="_on_sword_body_entered"]
+[connection signal="body_entered" from="sword" to="sword" method="_on_sword_body_entered"]
+[connection signal="body_exited" from="sword" to="sword" method="_on_sword_body_exited"]

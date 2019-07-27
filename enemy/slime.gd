@@ -13,6 +13,7 @@ func _ready():
 
 func _physics_process(delta):
 	if is_network_master():
+		movement_loop()
 		if move_timer > 0:
 			move_timer -= 1
 		elif move_timer == 0 or is_on_wall():
@@ -23,4 +24,3 @@ func _physics_process(delta):
 	else:
 		position = puppet_pos
 		move_dir = puppet_motion
-	movement_loop()
